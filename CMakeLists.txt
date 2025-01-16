@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.16)
 
 project(MyCUDAProject)
-set(EXPORT_COMPILE_COMMANDS ON)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 # 查找 Python 库
 find_package(Python3 REQUIRED)
@@ -18,6 +18,8 @@ option(USE_CPU "Enable CPU-only compilation" OFF)
 if(NOT USE_CUDA AND NOT USE_BANG AND NOT USE_CPU)
     set(USE_CUDA ON)
 endif()
+
+set(CMAKE_CUDA_COMPILER "nvcc")
 
 # 查找源文件
 # 添加头文件搜索路径

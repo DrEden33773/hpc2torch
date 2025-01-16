@@ -1,0 +1,40 @@
+Diagnostics:
+  ClangTidy:
+    Add:
+      [
+        performance-*,
+        bugprone-*,
+        portability-*,
+        modernize-*,
+        cppcoreguidelines-*,
+        readability-*,
+      ]
+    Remove:
+      [
+        modernize-use-trailing-return-type,
+        cppcoreguidelines-no-malloc,
+        cppcoreguidelines-pro-bounds-pointer-arithmetic,
+        cppcoreguidelines-macro-usage,
+        cppcoreguidelines-non-private-member-variables-in-classes,
+        bugprone-reserved-identifier,
+        readability-identifier-length,
+        cppcoreguidelines-special-member-functions,
+        cppcoreguidelines-avoid-c-arrays,
+        cppcoreguidelines-avoid-magic-numbers,
+        readability-magic-numbers,
+        cppcoreguidelines-pro-bounds-constant-array-index,
+        cppcoreguidelines-owning-memory,
+        bugprone-easily-swappable-parameters,
+        readability-math-missing-parentheses,
+      ]
+    CheckOptions:
+      WarnOnFloatingPointNarrowingConversion: false
+    FastCheckFilter: Loose
+
+# 消除掉 cuda-nvcc 一些不必要的警告
+CompileFlags:
+  Remove:
+    - -forward-unknown-to-host-compiler
+    - --options-file
+    - --generate-code=*
+    - -Xcompiler=-fPIC
